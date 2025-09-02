@@ -1,0 +1,88 @@
+body {
+  background: linear-gradient(135deg, #667eea 0%, #9b59b6 100%);
+}
+
+.login-container {
+  width: 400px;
+  margin: 100px auto;
+  padding: 30px;
+  background: #fff;
+  border-radius: 25px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-card-bg .login-icon {
+  background: linear-gradient(135deg, #667eea 0%, #9b59b6 100%);
+  color: rgba(41, 41, 41, 0.755);
+  padding: 20px;
+  border-radius: 50%;
+  font-size: 35px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.login-subtext {
+  color: #888;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.login-card-bg .form-control {
+  border-radius: 10px;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-width: 2px;
+  transition: border-color 0.3s;
+}
+
+.login-card-bg {
+  border-radius: 30px !important;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #9b59b6 100%);
+  border: none;
+  border-radius: 10px;
+  padding: 10px 0px;
+  color: #fff;
+  font-weight: bold;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+.btn-masuk {
+  width: 80%;
+  margin: auto;
+  display: block;
+  padding: 10px 0;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 1rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.btn-masuk:hover {
+  background: linear-gradient(135deg, #5a6fd6 0%, #8e44ad 100%); 
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); 
+  transform: translateY(-2px); 
+}
+
+.btn-google {
+  background: #fff;
+  border: 2px solid #ddd;
+  transition: background 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 10px 0;
+}
+
+.btn-google:hover {
+  background: #fff; /* stays white */
+  border-color: #ccc; /* slightly darker border */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* stronger shadow */
+  transform: translateY(-2px); /* small lift effect */
+}
