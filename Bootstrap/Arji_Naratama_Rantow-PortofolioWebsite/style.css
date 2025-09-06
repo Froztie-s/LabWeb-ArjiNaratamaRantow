@@ -1,0 +1,55 @@
+:root {
+    --hero-overlay: rgba(0, 0, 0, 0.35);
+}
+.hero {
+    background: linear-gradient(var(--hero-overlay), var(--hero-overlay)),
+      url("https://images.unsplash.com/photo-1518773553398-650c184e0bb3?q=80&w=1600&auto=format&fit=crop")
+        center/cover no-repeat;
+    color: #fff;
+    min-height: 70vh;
+    display: grid;
+    place-items: center;
+    text-align: center;
+}
+
+.shadow-hower {
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.shadow-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 576px) {
+  .hero h1 {
+    font-size: 1.55rem;
+  }
+  .hero p.lead {
+    font-size: 1rem;
+  }
+  .navbar-brand {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  :root {
+    --hero-overlay: rgba(0, 0, 0, 0.45);
+  }
+  .skills .progress {
+    height: 0.6rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .hero {
+    min-height: 85vh;
+  }
+  section {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  .skills .progress {
+    height: 0.75rem;
+  }
+}
