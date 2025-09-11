@@ -1,0 +1,17 @@
+.left-side {
+    background: url("../Quiz\ 2/") center center / cover no-repeat;
+    min-height: 100vh;
+}
+
+.right-side {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f4f4f4;
+}
+
+.login-box {
+    width: 100%;
+    max-width: 400px;
+}

@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Daftar Mahasiswa</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Daftar Mahasiswa</h1>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>NIM</th>
+            <th>Nama</th>
+            <th>Jurusan</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for m in mymahasiswa %}
+          <tr>
+            <td>{{ m.nim|default:"-" }}</td>
+            <td>{{ m.firstname }} {{ m.lastname }}</td>
+            <td><span class="badge">{{ m.jurusan|default:"-" }}</span></td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="3">Belum ada data.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <p class="footer">Contoh styling sederhana dengan static files Django.</p>
+    </div>
+  </body>
+</html>
