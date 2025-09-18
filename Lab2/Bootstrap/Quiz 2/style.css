@@ -1,0 +1,58 @@
+.left-side {
+  background: url("../Quiz_2/Foto/background.jpg") center center / cover no-repeat;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.right-side {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f4f4f4;
+}
+
+.login-box {
+  width: 100%;
+  max-width: 400px;
+  background-color: transparent;
+}
+
+.batik-ribbon {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 41px;
+  background: url("../Quiz_2/Foto/gradasi.png") bottom center / cover
+    no-repeat;
+}
+
+.logo-overlay {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 420px;
+  height: 120px; 
+  z-index: 2;
+}
+
+input.form-control {
+  border-radius: 15px !important;
+  padding: 0.6rem 1.2rem;
+}
+
+.btn-primary {
+  background-color: #002d72;
+  border-color: #002d72;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 0.6rem;
+}
+
+.input-group-text {
+  background: transparent;
+  border: none;
+  cursor: default;
+}

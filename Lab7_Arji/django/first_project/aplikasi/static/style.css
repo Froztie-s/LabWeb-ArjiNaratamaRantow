@@ -1,0 +1,605 @@
+/* CSS maksimal untuk CRUD mahasiswa - tanpa modifikasi HTML */
+:root {
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial,
+    sans-serif;
+  --primary-color: #3b82f6;
+  --primary-dark: #1e40af;
+  --success-color: #10b981;
+  --success-dark: #059669;
+  --danger-color: #ef4444;
+  --danger-dark: #dc2626;
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 24px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  color: var(--gray-800);
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+      circle at 25% 25%,
+      rgba(59, 130, 246, 0.1) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 75% 75%,
+      rgba(168, 85, 247, 0.1) 0%,
+      transparent 50%
+    );
+  pointer-events: none;
+  z-index: -1;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  padding: 40px;
+  border-radius: 24px;
+  box-shadow: var(--shadow-xl);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  animation: slideUp 0.6s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Advanced Header Styling */
+h1 {
+  margin: 0 0 40px;
+  font-size: clamp(28px, 5vw, 42px);
+  font-weight: 800;
+  text-align: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  background-size: 200% 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 3s ease-in-out infinite;
+  position: relative;
+}
+
+@keyframes gradientShift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+h1::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--primary-color),
+    var(--success-color)
+  );
+  border-radius: 2px;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: translateX(-50%) scaleX(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) scaleX(1.2);
+  }
+}
+
+/* Form Input Styling - Target semua input */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[name*="nim"],
+input[name*="nama"],
+input[name*="firstname"],
+input[name*="lastname"],
+input[name*="jurusan"] {
+  width: 200px;
+  padding: 14px 18px;
+  margin: 0 8px 12px 0;
+  border: 2px solid var(--gray-200);
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  box-shadow: var(--shadow-xs);
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[name*="nim"]:focus,
+input[name*="nama"]:focus,
+input[name*="firstname"]:focus,
+input[name*="lastname"]:focus,
+input[name*="jurusan"]:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1), var(--shadow-md);
+  transform: translateY(-2px);
+  background: white;
+}
+
+input::placeholder {
+  color: var(--gray-400);
+  font-weight: 400;
+}
+
+/* Advanced Button Styling - Target berbagai jenis tombol */
+button,
+input[type="submit"],
+input[type="button"],
+a[href*="update"],
+a[href*="delete"],
+.btn,
+button[type="submit"] {
+  padding: 14px 28px;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  margin: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  min-width: 120px;
+}
+
+/* Primary Button (Tambah) */
+button,
+input[type="submit"],
+button[type="submit"] {
+  background: linear-gradient(
+    135deg,
+    var(--primary-color) 0%,
+    var(--primary-dark) 100%
+  );
+  color: white;
+  box-shadow: var(--shadow-md);
+}
+
+button:hover,
+input[type="submit"]:hover,
+button[type="submit"]:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: var(--shadow-lg);
+}
+
+button::before,
+input[type="submit"]::before,
+button[type="submit"]::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+button:hover::before,
+input[type="submit"]:hover::before,
+button[type="submit"]:hover::before {
+  left: 100%;
+}
+
+/* Update Button */
+a[href*="update"] {
+  background: linear-gradient(
+    135deg,
+    var(--success-color) 0%,
+    var(--success-dark) 100%
+  );
+  color: white;
+  box-shadow: var(--shadow-sm);
+  font-size: 13px;
+  padding: 10px 20px;
+  min-width: 90px;
+}
+
+a[href*="update"]:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: var(--shadow-md);
+}
+
+/* Delete Button */
+a[href*="delete"] {
+  background: linear-gradient(
+    135deg,
+    var(--danger-color) 0%,
+    var(--danger-dark) 100%
+  );
+  color: white;
+  box-shadow: var(--shadow-sm);
+  font-size: 13px;
+  padding: 10px 20px;
+  min-width: 90px;
+}
+
+a[href*="delete"]:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: var(--shadow-md);
+}
+
+/* Advanced Table Styling */
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 32px;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--gray-200);
+}
+
+.table thead {
+  background: linear-gradient(135deg, var(--gray-50) 0%, #fafbfc 100%);
+  position: relative;
+}
+
+.table thead::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--primary-color),
+    var(--success-color),
+    var(--primary-color)
+  );
+  background-size: 200% 100%;
+  animation: gradientMove 3s linear infinite;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 200% 0%;
+  }
+}
+
+.table thead th {
+  text-align: left;
+  padding: 20px 24px;
+  font-weight: 700;
+  color: var(--gray-700);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  border-bottom: none;
+}
+
+.table thead th::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 25%;
+  height: 50%;
+  width: 1px;
+  background: var(--gray-300);
+}
+
+.table thead th:last-child::after {
+  display: none;
+}
+
+.table tbody tr {
+  transition: all 0.3s ease;
+  border-bottom: 1px solid var(--gray-100);
+  background: white;
+}
+
+.table tbody tr:nth-child(even) {
+  background: rgba(249, 250, 251, 0.5);
+}
+
+.table tbody tr:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.05) 0%,
+    rgba(168, 85, 247, 0.05) 100%
+  );
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.table tbody td {
+  padding: 20px 24px;
+  color: var(--gray-600);
+  font-size: 15px;
+  vertical-align: middle;
+  font-weight: 500;
+  border-bottom: none;
+}
+
+.table tbody td:first-child {
+  font-weight: 700;
+  color: var(--primary-color);
+  font-family: "Monaco", "Menlo", monospace;
+}
+
+/* Advanced Badge Styling */
+.badge {
+  display: inline-block;
+  padding: 8px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+  color: #3730a3;
+  border: 2px solid rgba(199, 210, 254, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: var(--shadow-xs);
+  position: relative;
+  overflow: hidden;
+}
+
+.badge::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.6s;
+}
+
+.table tbody tr:hover .badge::before {
+  left: 100%;
+}
+
+/* Empty State Styling */
+.table tbody tr td[colspan] {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--gray-400);
+  font-style: italic;
+  font-size: 16px;
+  background: linear-gradient(
+    135deg,
+    var(--gray-50) 0%,
+    rgba(249, 250, 251, 0.5) 100%
+  );
+  position: relative;
+}
+
+.table tbody tr td[colspan]::before {
+  content: "📚";
+  display: block;
+  font-size: 48px;
+  margin-bottom: 16px;
+  opacity: 0.3;
+}
+
+/* Footer Enhanced */
+.footer {
+  margin-top: 32px;
+  text-align: center;
+  color: var(--gray-500);
+  font-size: 13px;
+  padding: 24px 0;
+  border-top: 2px solid var(--gray-100);
+  background: linear-gradient(
+    135deg,
+    rgba(249, 250, 251, 0.5) 0%,
+    rgba(243, 244, 246, 0.3) 100%
+  );
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+/* Action Buttons Container */
+.table tbody td:last-child {
+  white-space: nowrap;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  body {
+    padding: 12px;
+  }
+
+  .container {
+    padding: 24px;
+    border-radius: 16px;
+  }
+
+  h1 {
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  input[type="email"],
+  input[name*="nim"],
+  input[name*="nama"],
+  input[name*="firstname"],
+  input[name*="lastname"],
+  input[name*="jurusan"] {
+    width: calc(100% - 16px);
+    margin: 0 0 12px 0;
+  }
+
+  .table {
+    font-size: 13px;
+    margin-top: 20px;
+  }
+
+  .table thead th,
+  .table tbody td {
+    padding: 12px 8px;
+  }
+
+  button,
+  input[type="submit"],
+  button[type="submit"] {
+    width: 100%;
+    margin: 8px 0;
+  }
+
+  a[href*="update"],
+  a[href*="delete"] {
+    display: block;
+    margin: 2px 0;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .table thead th:nth-child(n + 3),
+  .table tbody td:nth-child(n + 3) {
+    display: none;
+  }
+
+  .table tbody td:last-child {
+    display: table-cell;
+  }
+}
+
+/* Loading Animation for Table Rows */
+.table tbody tr {
+  animation: fadeInUp 0.5s ease-out forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.table tbody tr:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.table tbody tr:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.table tbody tr:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.table tbody tr:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.table tbody tr:nth-child(5) {
+  animation-delay: 0.5s;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--gray-100);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--success-color)
+  );
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, var(--primary-dark), var(--success-dark));
+}
+
+/* Focus indicators for accessibility */
+*:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
