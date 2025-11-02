@@ -1,0 +1,81 @@
+import React from "react";
+
+function BookCard({ book, onEdit, onDelete }) {
+  // Fungsi untuk tampilkan rating dengan emoji
+  const getRatingDisplay = (rating) => {
+    switch (rating) {
+      case "excellent":
+        return "⭐⭐⭐ Sangat Bagus";
+      case "average":
+        return "⭐⭐ Biasa";
+      case "bad":
+        return "⭐ Kurang Bagus";
+      default:
+        return "⭐⭐ Biasa";
+    }
+  };
+
+  // Fungsi untuk format tanggal
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("id-ID", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  };
+
+  return (
+    <div className="bg-white p-5 rounded-lg shadow-md hover:shadow-lg transition duration-200">
+      {/* Gambar Sampul */}
+      {book.image && (
+        <img
+          src={book.image}
+          alt={`Sampul ${book.name}`}
+          className="mb-4 h-48 w-full rounded-lg object-cover"
+          onError={(e) => {
+            e.currentTarget.src =
+              "https://via.placeholder.com/300x200?text=No+Image";
+          }}
+        />
+      )}
+      
+      {/* Judul Buku */}
+      <h3 className="text-xl font-bold text-gray-800 mb-2">📚 {book.name}</h3>
+
+      {/* Penulis */}
+      <p className="text-gray-600 mb-2">
+        <span className="font-semibold">Penulis:</span> {book.author}
+      </p>
+
+      {/* Rating */}
+      <p className="text-gray-600 mb-2">
+        <span className="font-semibold">Rating:</span>{" "}
+        {getRatingDisplay(book.rating)}
+      </p>
+
+      {/* Tanggal Upload */}
+      <p className="text-gray-500 text-sm mb-4">
+        Ditambahkan: {formatDate(book.uploaded)}
+      </p>
+
+      {/* Tombol Edit dan Hapus */}
+      <div className="flex gap-2">
+        <button
+          onClick={() => onEdit(book)}
+          className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition duration-200"
+        >
+          ✏ Edit
+        </button>
+        <button
+          onClick={() => onDelete(book.id)}
+          className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition duration-200"
+        >
+          🗑 Hapus
+        </button>
+      </div>
+    </div>
+  );
+}
+
+export default BookCard;
